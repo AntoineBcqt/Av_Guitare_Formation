@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import type { User } from '../../types';
 import { Avatar } from '../Avatar/Avatar';
+import logoUrl from '../../assets/logo.svg';
 import styles from './Navbar.module.css';
 
 interface NavbarProps {
@@ -34,8 +35,7 @@ export function Navbar({ user }: NavbarProps) {
     <header className={styles.navbar}>
       <div className={styles.inner}>
         <NavLink to="/mon-espace" className={styles.logo}>
-          <span className={styles.logoIcon}>🎸</span>
-          <span className={styles.logoText}>Guitare Formation</span>
+          <img src={logoUrl} alt="AV Guitare Formation" className={styles.logoImg} />
         </NavLink>
 
         <nav className={styles.nav}>

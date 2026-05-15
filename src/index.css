@@ -35,6 +35,7 @@ body {
   color: var(--color-text);
   -webkit-font-smoothing: antialiased;
   line-height: 1.6;
+  scrollbar-gutter: stable;
 }
 
 a {
