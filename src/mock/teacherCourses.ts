@@ -1,0 +1,357 @@
+import type { TeacherCourse } from '../types/teacher';
+
+export const teacherCourses: TeacherCourse[] = [
+  {
+    id: 'tc1',
+    title: 'Fingerpicking & Picking',
+    description: 'Maîtrisez les techniques de jeu au doigt et au médiator. Patterns Travis, arpèges classiques et picking hybride.',
+    level: 'Intermédiaire',
+    isPremium: false,
+    chaptersCount: 5,
+    lessonsCount: 20,
+    totalDuration: '8h30',
+    thumbnail: 'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=600&q=80',
+    teacherId: 't1',
+    studentsCount: 10,
+    chapters: [
+      {
+        id: 'tc1-ch1',
+        title: 'Les bases du fingerpicking',
+        lessons: [
+          { id: 'tc1-ch1-l1', title: 'Introduction et position de la main droite', duration: '12 min', completed: false, locked: false },
+          { id: 'tc1-ch1-l2', title: 'Le pouce indépendant : basse alternée', duration: '18 min', completed: false, locked: false },
+          { id: 'tc1-ch1-l3', title: 'Pattern PIMA fondamental', duration: '22 min', completed: false, locked: false },
+          { id: 'tc1-ch1-l4', title: 'Premier morceau complet au doigt', duration: '28 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc1-ch2',
+        title: 'Pattern Travis et style country',
+        lessons: [
+          { id: 'tc1-ch2-l1', title: 'Comprendre le Travis Picking', duration: '20 min', completed: false, locked: false },
+          { id: 'tc1-ch2-l2', title: 'Basse alternée + mélodie simultanée', duration: '25 min', completed: false, locked: false },
+          { id: 'tc1-ch2-l3', title: 'Application sur un standard country', duration: '32 min', completed: false, locked: false },
+          { id: 'tc1-ch2-l4', title: 'Variations et ornements', duration: '26 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc1-ch3',
+        title: 'Picking au médiator',
+        lessons: [
+          { id: 'tc1-ch3-l1', title: 'Picking alterné : technique et précision', duration: '18 min', completed: false, locked: false },
+          { id: 'tc1-ch3-l2', title: 'Economy picking et sweeping doux', duration: '24 min', completed: false, locked: false },
+          { id: 'tc1-ch3-l3', title: 'Crosspicking : médiator sur 3 cordes', duration: '22 min', completed: false, locked: false },
+          { id: 'tc1-ch3-l4', title: 'Exercices de vitesse progressive', duration: '30 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc1-ch4',
+        title: 'Hybrid picking',
+        lessons: [
+          { id: 'tc1-ch4-l1', title: 'Introduction au picking hybride', duration: '16 min', completed: false, locked: false },
+          { id: 'tc1-ch4-l2', title: 'Médiator + annulaire : double picking', duration: '22 min', completed: false, locked: false },
+          { id: 'tc1-ch4-l3', title: 'Licks chicken picking à la Brent Mason', duration: '28 min', completed: false, locked: false },
+          { id: 'tc1-ch4-l4', title: 'Intégration dans un solo complet', duration: '35 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc1-ch5',
+        title: 'Compositions et projets',
+        lessons: [
+          { id: 'tc1-ch5-l1', title: 'Analyser et transcrire une pièce', duration: '25 min', completed: false, locked: false },
+          { id: 'tc1-ch5-l2', title: 'Créer votre propre pièce fingerpicking', duration: '40 min', completed: false, locked: false },
+          { id: 'tc1-ch5-l3', title: 'Enregistrement : conseils et setup', duration: '20 min', completed: false, locked: false },
+          { id: 'tc1-ch5-l4', title: 'Bilan et certification', duration: '10 min', completed: false, locked: false },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'tc2',
+    title: 'Accords & Rythmes',
+    description: 'Maîtrisez les accords ouverts, les barrés et les patterns rythmiques essentiels pour accompagner n\'importe quelle chanson.',
+    level: 'Débutant',
+    price: 49,
+    isPremium: true,
+    chaptersCount: 4,
+    lessonsCount: 18,
+    totalDuration: '7h',
+    thumbnail: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
+    teacherId: 't1',
+    studentsCount: 10,
+    chapters: [
+      {
+        id: 'tc2-ch1',
+        title: 'Accords ouverts essentiels',
+        lessons: [
+          { id: 'tc2-ch1-l1', title: 'Do, Ré, Mi — les 3 accords universels', duration: '15 min', completed: false, locked: false },
+          { id: 'tc2-ch1-l2', title: 'La, Sol, Si — compléter la palette', duration: '20 min', completed: false, locked: false },
+          { id: 'tc2-ch1-l3', title: 'Transitions rapides : exercices chrono', duration: '25 min', completed: false, locked: false },
+          { id: 'tc2-ch1-l4', title: 'Votre première chanson complète', duration: '30 min', completed: false, locked: false },
+          { id: 'tc2-ch1-l5', title: 'Accords suspendus et add9', duration: '22 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc2-ch2',
+        title: 'Accords barrés',
+        lessons: [
+          { id: 'tc2-ch2-l1', title: 'Comprendre et travailler le barré', duration: '18 min', completed: false, locked: false },
+          { id: 'tc2-ch2-l2', title: 'Formes E et A en barré', duration: '25 min', completed: false, locked: false },
+          { id: 'tc2-ch2-l3', title: 'Demi-barrés et barrés partiels', duration: '22 min', completed: false, locked: false },
+          { id: 'tc2-ch2-l4', title: 'Application sur une grille complète', duration: '28 min', completed: false, locked: false },
+          { id: 'tc2-ch2-l5', title: 'Power chords et accords de 5', duration: '20 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc2-ch3',
+        title: 'Patterns rythmiques',
+        lessons: [
+          { id: 'tc2-ch3-l1', title: 'Comprendre le temps et le subdivision', duration: '15 min', completed: false, locked: false },
+          { id: 'tc2-ch3-l2', title: 'Strumming down-up avancé', duration: '22 min', completed: false, locked: false },
+          { id: 'tc2-ch3-l3', title: 'Syncopes et contre-temps', duration: '28 min', completed: false, locked: false },
+          { id: 'tc2-ch3-l4', title: 'Patterns spécifiques : folk, pop, reggae', duration: '30 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc2-ch4',
+        title: 'Application musicale',
+        lessons: [
+          { id: 'tc2-ch4-l1', title: 'Jouer avec un backing track', duration: '25 min', completed: false, locked: false },
+          { id: 'tc2-ch4-l2', title: '3 chansons complètes arrangées', duration: '45 min', completed: false, locked: false },
+          { id: 'tc2-ch4-l3', title: 'Créer vos propres arrangements', duration: '35 min', completed: false, locked: false },
+          { id: 'tc2-ch4-l4', title: 'Bilan de fin de cours', duration: '12 min', completed: false, locked: false },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'tc3',
+    title: 'Techniques avancées de guitare',
+    description: 'Tapping, sweep picking, legato avancé, techniques expressives — pour guitaristes souhaitant passer un cap technique.',
+    level: 'Avancé',
+    isPremium: false,
+    chaptersCount: 6,
+    lessonsCount: 22,
+    totalDuration: '10h',
+    thumbnail: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80',
+    teacherId: 't1',
+    studentsCount: 10,
+    chapters: [
+      {
+        id: 'tc3-ch1',
+        title: 'Legato avancé',
+        lessons: [
+          { id: 'tc3-ch1-l1', title: 'Hammer-on et pull-off : technique parfaite', duration: '20 min', completed: false, locked: false },
+          { id: 'tc3-ch1-l2', title: 'Runs legato sur une octave', duration: '25 min', completed: false, locked: false },
+          { id: 'tc3-ch1-l3', title: 'Legato chromatique et gammes', duration: '28 min', completed: false, locked: false },
+          { id: 'tc3-ch1-l4', title: 'Licks legato à la Satriani', duration: '32 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc3-ch2',
+        title: 'Tapping et techniques 2 mains',
+        lessons: [
+          { id: 'tc3-ch2-l1', title: 'Le tapping simple : bases', duration: '22 min', completed: false, locked: false },
+          { id: 'tc3-ch2-l2', title: 'Tapping à plusieurs doigts', duration: '30 min', completed: false, locked: false },
+          { id: 'tc3-ch2-l3', title: 'Gammes en tapping sur tout le manche', duration: '35 min', completed: false, locked: false },
+          { id: 'tc3-ch2-l4', title: 'Pièce complète en tapping', duration: '40 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc3-ch3',
+        title: 'Sweep picking',
+        lessons: [
+          { id: 'tc3-ch3-l1', title: 'Introduction au sweep picking', duration: '18 min', completed: false, locked: false },
+          { id: 'tc3-ch3-l2', title: 'Arpèges 3 cordes en sweep', duration: '28 min', completed: false, locked: false },
+          { id: 'tc3-ch3-l3', title: 'Arpèges 5 et 6 cordes', duration: '35 min', completed: false, locked: false },
+          { id: 'tc3-ch3-l4', title: 'Sweep picking dans un solo', duration: '38 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc3-ch4',
+        title: 'Techniques expressives',
+        lessons: [
+          { id: 'tc3-ch4-l1', title: 'Vibrato avancé et nuances', duration: '20 min', completed: false, locked: false },
+          { id: 'tc3-ch4-l2', title: 'Bends précis : demi-ton, ton, ton et demi', duration: '25 min', completed: false, locked: false },
+          { id: 'tc3-ch4-l3', title: 'Slides, glissandos et tremolos', duration: '22 min', completed: false, locked: false },
+          { id: 'tc3-ch4-l4', title: 'Whammy bar et effets expressifs', duration: '28 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc3-ch5',
+        title: 'Économie de jeu',
+        lessons: [
+          { id: 'tc3-ch5-l1', title: 'Réduire les mouvements inutiles', duration: '18 min', completed: false, locked: false },
+          { id: 'tc3-ch5-l2', title: 'Ancrage et économie de la main droite', duration: '22 min', completed: false, locked: false },
+          { id: 'tc3-ch5-l3', title: 'Exercices de précision lente', duration: '20 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc3-ch6',
+        title: 'Projets et performances',
+        lessons: [
+          { id: 'tc3-ch6-l1', title: 'Analyser votre jeu : s\'enregistrer', duration: '15 min', completed: false, locked: false },
+          { id: 'tc3-ch6-l2', title: 'Préparation d\'une performance scénique', duration: '25 min', completed: false, locked: false },
+          { id: 'tc3-ch6-l3', title: 'Projet final : solo complet 2 minutes', duration: '45 min', completed: false, locked: false },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'tc4',
+    title: 'Maîtriser les accords jazz',
+    description: 'Explorez l\'univers des voicings jazz : accords de septième, extensions, drop 2, réharmonisation et standards.',
+    level: 'Avancé',
+    price: 49,
+    isPremium: true,
+    chaptersCount: 8,
+    lessonsCount: 30,
+    totalDuration: '14h',
+    thumbnail: 'https://images.unsplash.com/photo-1516924962500-2b4b3b99ea02?w=600&q=80',
+    teacherId: 't1',
+    studentsCount: 10,
+    chapters: [
+      {
+        id: 'tc4-ch1',
+        title: 'Introduction au jazz',
+        lessons: [
+          { id: 'tc4-ch1-l1', title: 'Qu\'est-ce que le jazz ? Histoire et contexte', duration: '15 min', completed: false, locked: false },
+          { id: 'tc4-ch1-l2', title: 'L\'oreille jazz : écouter et analyser', duration: '20 min', completed: false, locked: false },
+          { id: 'tc4-ch1-l3', title: 'Chord symbols : lire et interpréter', duration: '22 min', completed: false, locked: false },
+          { id: 'tc4-ch1-l4', title: 'Position de départ : voicings de base', duration: '28 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc4-ch2',
+        title: 'Accords de septième',
+        lessons: [
+          { id: 'tc4-ch2-l1', title: 'Maj7, min7, dom7 : différences et sons', duration: '25 min', completed: false, locked: false },
+          { id: 'tc4-ch2-l2', title: 'Min7b5 et dim7 : accords de passage', duration: '22 min', completed: false, locked: false },
+          { id: 'tc4-ch2-l3', title: 'Inversions et renversements', duration: '28 min', completed: false, locked: false },
+          { id: 'tc4-ch2-l4', title: 'Application sur une grille jazz complète', duration: '35 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc4-ch3',
+        title: 'Extensions : 9, 11, 13',
+        lessons: [
+          { id: 'tc4-ch3-l1', title: 'Les tensions naturelles et altérées', duration: '22 min', completed: false, locked: false },
+          { id: 'tc4-ch3-l2', title: 'Accords de 9ème : maj9, min9, dom9', duration: '28 min', completed: false, locked: false },
+          { id: 'tc4-ch3-l3', title: 'Les 11 et 13 : voicings pratiques', duration: '30 min', completed: false, locked: false },
+          { id: 'tc4-ch3-l4', title: 'Dom7 altérés : b9, #9, b13', duration: '35 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc4-ch4',
+        title: 'Voicings Drop 2 et Drop 3',
+        lessons: [
+          { id: 'tc4-ch4-l1', title: 'Comprendre les drop voicings', duration: '20 min', completed: false, locked: false },
+          { id: 'tc4-ch4-l2', title: 'Drop 2 sur 4 groupes de cordes', duration: '30 min', completed: false, locked: false },
+          { id: 'tc4-ch4-l3', title: 'Drop 3 et voicings fermés', duration: '28 min', completed: false, locked: false },
+          { id: 'tc4-ch4-l4', title: 'Chord melody basique avec drops', duration: '35 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc4-ch5',
+        title: 'Substitutions harmoniques',
+        lessons: [
+          { id: 'tc4-ch5-l1', title: 'Substitution de triton', duration: '25 min', completed: false, locked: false },
+          { id: 'tc4-ch5-l2', title: 'Substitutions diatoniques', duration: '22 min', completed: false, locked: false },
+          { id: 'tc4-ch5-l3', title: 'Backdoor dominants', duration: '28 min', completed: false, locked: false },
+          { id: 'tc4-ch5-l4', title: 'Créer vos propres substitutions', duration: '32 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc4-ch6',
+        title: 'Progressions II-V-I',
+        lessons: [
+          { id: 'tc4-ch6-l1', title: 'La progression II-V-I : fondamentaux', duration: '20 min', completed: false, locked: false },
+          { id: 'tc4-ch6-l2', title: 'Enchaînements dans toutes les tonalités', duration: '28 min', completed: false, locked: false },
+          { id: 'tc4-ch6-l3', title: 'II-V-I avec extensions et substitutions', duration: '32 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc4-ch7',
+        title: 'Réharmonisation',
+        lessons: [
+          { id: 'tc4-ch7-l1', title: 'Réharmoniser une mélodie simple', duration: '28 min', completed: false, locked: false },
+          { id: 'tc4-ch7-l2', title: 'Chord melody avancé', duration: '40 min', completed: false, locked: false },
+          { id: 'tc4-ch7-l3', title: 'Walking bass lines et chords', duration: '35 min', completed: false, locked: false },
+          { id: 'tc4-ch7-l4', title: 'Application sur Autumn Leaves', duration: '45 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc4-ch8',
+        title: 'Standards jazz',
+        lessons: [
+          { id: 'tc4-ch8-l1', title: 'Blue Bossa : analyse et jeu complet', duration: '40 min', completed: false, locked: false },
+          { id: 'tc4-ch8-l2', title: 'So What : modes et dorien', duration: '38 min', completed: false, locked: false },
+          { id: 'tc4-ch8-l3', title: 'Projet final : arrangement personnel', duration: '50 min', completed: false, locked: false },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'tc5',
+    title: 'Improvisation rock pour débutants',
+    description: 'Libérez l\'improvisateur en vous avec la gamme pentatonique, les techniques expressives et les bases du blues rock.',
+    level: 'Débutant',
+    isPremium: false,
+    chaptersCount: 5,
+    lessonsCount: 18,
+    totalDuration: '7h30',
+    thumbnail: 'https://images.unsplash.com/photo-1525201548942-d8732f6617a0?w=600&q=80',
+    teacherId: 't1',
+    studentsCount: 10,
+    chapters: [
+      {
+        id: 'tc5-ch1',
+        title: 'La gamme pentatonique mineure',
+        lessons: [
+          { id: 'tc5-ch1-l1', title: 'La pentatonique : 5 notes magiques', duration: '18 min', completed: false, locked: false },
+          { id: 'tc5-ch1-l2', title: 'Position 1 : la forme de base', duration: '22 min', completed: false, locked: false },
+          { id: 'tc5-ch1-l3', title: 'Jouer dans la boîte : votre premier solo', duration: '28 min', completed: false, locked: false },
+          { id: 'tc5-ch1-l4', title: 'Déplacer la pentatonique sur tout le manche', duration: '30 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc5-ch2',
+        title: 'Techniques d\'expression',
+        lessons: [
+          { id: 'tc5-ch2-l1', title: 'Le bend : l\'âme du rock', duration: '22 min', completed: false, locked: false },
+          { id: 'tc5-ch2-l2', title: 'Vibrato naturel et contrôlé', duration: '20 min', completed: false, locked: false },
+          { id: 'tc5-ch2-l3', title: 'Slides et legato dans le solo', duration: '18 min', completed: false, locked: false },
+          { id: 'tc5-ch2-l4', title: 'Combiner bend + vibrato + slide', duration: '25 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc5-ch3',
+        title: 'Construction de solos',
+        lessons: [
+          { id: 'tc5-ch3-l1', title: 'Phrasing : respirer musicalement', duration: '20 min', completed: false, locked: false },
+          { id: 'tc5-ch3-l2', title: 'Monter la tension et la relâcher', duration: '25 min', completed: false, locked: false },
+          { id: 'tc5-ch3-l3', title: 'S\'inspirer des grands : AC/DC, Hendrix', duration: '30 min', completed: false, locked: false },
+          { id: 'tc5-ch3-l4', title: 'Composer votre premier solo sur 12 mesures', duration: '40 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc5-ch4',
+        title: 'Jouer sur des backing tracks',
+        lessons: [
+          { id: 'tc5-ch4-l1', title: 'Blues en La : backing track lent', duration: '25 min', completed: false, locked: false },
+          { id: 'tc5-ch4-l2', title: 'Rock en Mi : tempo medium', duration: '28 min', completed: false, locked: false },
+          { id: 'tc5-ch4-l3', title: 'Shuffle blues et triolets', duration: '30 min', completed: false, locked: false },
+        ],
+      },
+      {
+        id: 'tc5-ch5',
+        title: 'Créer ton propre son',
+        lessons: [
+          { id: 'tc5-ch5-l1', title: 'Réglages d\'ampli pour le rock', duration: '18 min', completed: false, locked: false },
+          { id: 'tc5-ch5-l2', title: 'Les pédales d\'effets essentielles', duration: '22 min', completed: false, locked: false },
+          { id: 'tc5-ch5-l3', title: 'Bilan et projet final d\'improvisation', duration: '35 min', completed: false, locked: false },
+        ],
+      },
+    ],
+  },
+];

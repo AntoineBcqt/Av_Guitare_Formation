@@ -1,0 +1,163 @@
+.page {
+  padding: 40px;
+  min-height: 100%;
+}
+
+.pageHeader {
+  margin-bottom: 24px;
+}
+
+.pageTitle {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin-bottom: 4px;
+}
+
+.pageCount {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.searchWrapper {
+  position: relative;
+  margin-bottom: 28px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 12px 16px 12px 42px;
+  font-size: 14px;
+  background: var(--color-cream-card);
+  outline: none;
+  transition: border-color 0.15s;
+  color: var(--color-text);
+}
+
+.searchInput:focus {
+  border-color: var(--color-navy);
+}
+
+.searchInput::placeholder {
+  color: var(--color-text-muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.card {
+  background: var(--color-cream-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  padding: 20px;
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.nameBlock {
+  flex: 1;
+  min-width: 0;
+}
+
+.studentName {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-navy);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.enrolledBadge {
+  font-size: 11px;
+  background: #F3F4F6;
+  color: var(--color-text-muted);
+  padding: 3px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+  margin-top: 3px;
+  display: inline-block;
+}
+
+.email {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+
+.coursesCount {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+}
+
+.coursesCount strong {
+  color: var(--color-navy);
+}
+
+.divider {
+  height: 1px;
+  background: var(--color-border);
+  margin-bottom: 12px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.banBtn {
+  font-size: 13px;
+  font-weight: 600;
+  color: #C0392B;
+  padding: 6px 0;
+  transition: opacity 0.15s;
+}
+
+.banBtn:hover {
+  opacity: 0.75;
+}
+
+.msgBtn {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-navy);
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  transition: background 0.15s;
+}
+
+.msgBtn:hover {
+  background: var(--color-cream);
+}
+
+.emptyState {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--color-text-muted);
+  font-size: 15px;
+}

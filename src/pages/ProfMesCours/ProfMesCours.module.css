@@ -1,0 +1,131 @@
+.page {
+  padding: 40px;
+  min-height: 100%;
+}
+
+.pageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.pageTitle {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--color-navy);
+}
+
+.newBtn {
+  background: var(--color-navy);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 11px 20px;
+  border-radius: 10px;
+  transition: opacity 0.15s;
+}
+
+.newBtn:hover {
+  opacity: 0.85;
+}
+
+.card {
+  background: var(--color-cream-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.courseRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--color-border);
+  transition: background 0.12s;
+}
+
+.courseRow:last-child {
+  border-bottom: none;
+}
+
+.courseRow:hover {
+  background: rgba(240, 237, 230, 0.4);
+}
+
+.thumbnail {
+  width: 70px;
+  height: 52px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin-bottom: 4px;
+}
+
+.meta {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.price {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-gold);
+  margin-right: 8px;
+  white-space: nowrap;
+}
+
+.freeLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-success);
+  margin-right: 8px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.btnOutline {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-navy);
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1.5px solid var(--color-navy);
+  background: transparent;
+  transition: background 0.15s;
+}
+
+.btnOutline:hover {
+  background: rgba(27, 46, 60, 0.06);
+}
+
+.btnPrimary {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: var(--color-navy);
+  transition: opacity 0.15s;
+}
+
+.btnPrimary:hover {
+  opacity: 0.85;
+}

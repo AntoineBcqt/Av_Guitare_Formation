@@ -1,0 +1,163 @@
+.hero {
+  background: var(--color-navy);
+  color: #fff;
+  padding: 56px var(--px);
+  text-align: center;
+}
+
+.heroInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.heroCount {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 16px;
+}
+
+.heroTitle {
+  font-family: var(--font-serif);
+  font-size: 44px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.heroTitle em {
+  font-style: italic;
+  color: var(--color-gold);
+}
+
+.heroSub {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* Filters */
+.filters {
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-cream-card);
+}
+
+.filtersInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--px);
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+}
+
+.filterBtn {
+  padding: 14px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.filterBtn:hover {
+  color: var(--color-text);
+}
+
+.filterBtn.active {
+  color: var(--color-navy);
+  border-bottom-color: var(--color-navy);
+  font-weight: 600;
+}
+
+/* Grid */
+.content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 40px var(--px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+}
+
+/* Modal styles */
+.priceBlock {
+  background: var(--color-cream);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.priceAmount {
+  font-family: var(--font-serif);
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin-bottom: 4px;
+}
+
+.premiumLabel {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-gold);
+  margin-bottom: 8px;
+}
+
+.accessInfo {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.benefitsList {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.benefitItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.benefitCheck {
+  color: var(--color-success);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.buyBtn {
+  display: block;
+  width: 100%;
+  background: var(--color-navy);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 12px;
+  transition: opacity 0.15s;
+}
+
+.buyBtn:hover {
+  opacity: 0.87;
+}
+
+.stripeNote {
+  text-align: center;
+  font-size: 12px;
+  color: var(--color-text-muted);
+}

@@ -1,0 +1,225 @@
+.page {
+  padding: 40px;
+  min-height: 100%;
+}
+
+.pageHeader {
+  margin-bottom: 28px;
+}
+
+.pageTitle {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin-bottom: 4px;
+}
+
+.pageTitle em {
+  font-style: italic;
+  color: var(--color-gold);
+}
+
+.pageSub {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+/* Sidebar */
+.sidebar {
+  position: sticky;
+  top: 20px;
+}
+
+.sidebarLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 10px;
+}
+
+.categoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.categoryBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-navy);
+  background: var(--color-cream-card);
+  border: 1px solid var(--color-border);
+  width: 100%;
+  text-align: left;
+  transition: background 0.12s;
+}
+
+.categoryBtn:hover { background: var(--color-cream); }
+
+.categoryBtn.active {
+  background: var(--color-navy);
+  color: #fff;
+  border-color: var(--color-navy);
+}
+
+.categoryCount {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+/* Main */
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.topBar {
+  display: flex;
+  gap: 12px;
+}
+
+.searchInput {
+  flex: 1;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  background: var(--color-cream-card);
+  outline: none;
+  transition: border-color 0.15s;
+  color: var(--color-text);
+}
+
+.searchInput:focus { border-color: var(--color-navy); }
+.searchInput::placeholder { color: var(--color-text-muted); }
+
+.newPostBtn {
+  background: var(--color-navy);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 8px;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+
+.newPostBtn:hover { opacity: 0.85; }
+
+.postList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Modal fields */
+.formField { margin-bottom: 16px; }
+
+.formLabel {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+.formInput {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  outline: none;
+  background: var(--color-cream);
+  color: var(--color-text);
+  transition: border-color 0.15s;
+}
+
+.formInput:focus { border-color: var(--color-navy); }
+
+.formTextarea {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  outline: none;
+  background: var(--color-cream);
+  color: var(--color-text);
+  resize: vertical;
+  min-height: 100px;
+  transition: border-color 0.15s;
+}
+
+.formTextarea:focus { border-color: var(--color-navy); }
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text-muted);
+  background: var(--color-cream);
+  transition: all 0.15s;
+}
+
+.pill:hover { border-color: var(--color-navy); color: var(--color-navy); }
+
+.pill.selected {
+  background: var(--color-navy);
+  border-color: var(--color-navy);
+  color: #fff;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.cancelBtn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  transition: background 0.15s;
+}
+
+.cancelBtn:hover { background: var(--color-cream); }
+
+.publishBtn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--color-navy);
+  color: #fff;
+  transition: opacity 0.15s;
+}
+
+.publishBtn:hover { opacity: 0.85; }

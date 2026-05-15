@@ -1,0 +1,507 @@
+.container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Left panel */
+.leftPanel {
+  width: 320px;
+  min-width: 320px;
+  height: 100%;
+  overflow-y: auto;
+  border-right: 1px solid var(--color-border);
+  background: var(--color-cream-card);
+  display: flex;
+  flex-direction: column;
+}
+
+.leftPanel::-webkit-scrollbar {
+  width: 4px;
+}
+.leftPanel::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 2px;
+}
+
+.panelHeader {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  background: var(--color-cream-card);
+  z-index: 5;
+}
+
+.panelLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 14px;
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+  transition: color 0.15s;
+}
+
+.backBtn:hover {
+  color: var(--color-navy);
+}
+
+/* Form fields */
+.fieldGroup {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fieldLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.fieldInput {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 14px;
+  outline: none;
+  background: var(--color-cream);
+  color: var(--color-text);
+  transition: border-color 0.15s;
+}
+
+.fieldInput:focus {
+  border-color: var(--color-navy);
+}
+
+.fieldTextarea {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 14px;
+  outline: none;
+  background: var(--color-cream);
+  color: var(--color-text);
+  resize: vertical;
+  min-height: 72px;
+  transition: border-color 0.15s;
+}
+
+.fieldTextarea:focus {
+  border-color: var(--color-navy);
+}
+
+/* Toggle switch */
+.toggleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toggleLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.switchWrapper {
+  position: relative;
+  width: 46px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.switchInput {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.switchSlider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: var(--color-border);
+  border-radius: 24px;
+  transition: background 0.2s;
+}
+
+.switchSlider::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 3px;
+  top: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.switchInput:checked + .switchSlider {
+  background: var(--color-navy);
+}
+
+.switchInput:checked + .switchSlider::before {
+  transform: translateX(22px);
+}
+
+.priceField {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.25s ease, opacity 0.2s ease;
+}
+
+.priceField.visible {
+  max-height: 60px;
+  opacity: 1;
+}
+
+.priceInputWrapper {
+  position: relative;
+}
+
+.pricePrefix {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.priceInput {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 9px 12px 9px 28px;
+  font-size: 14px;
+  outline: none;
+  background: var(--color-cream);
+  color: var(--color-text);
+  transition: border-color 0.15s;
+}
+
+.priceInput:focus {
+  border-color: var(--color-navy);
+}
+
+/* Chapters & lessons */
+.chapterSection {
+  flex: 1;
+  padding: 8px 0;
+}
+
+.chapterBlock {
+  margin-bottom: 4px;
+}
+
+.chapterHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px 6px;
+}
+
+.chapterLabel {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.chapterTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lessonItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 20px;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.lessonItem:hover {
+  background: var(--color-cream);
+}
+
+.lessonItem.active {
+  background: var(--color-cream);
+}
+
+.lessonNum {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.lessonNum.active {
+  background: var(--color-navy);
+  border-color: var(--color-navy);
+  color: #fff;
+}
+
+.lessonTitle {
+  font-size: 13px;
+  color: var(--color-text);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lessonItem.active .lessonTitle {
+  font-weight: 500;
+  color: var(--color-navy);
+}
+
+.addLessonBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--color-gold);
+  padding: 6px 20px;
+  font-weight: 600;
+  transition: opacity 0.15s;
+}
+
+.addLessonBtn:hover {
+  opacity: 0.75;
+}
+
+.addChapterBtn {
+  display: block;
+  width: calc(100% - 40px);
+  margin: 12px 20px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1.5px dashed var(--color-border);
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.addChapterBtn:hover {
+  border-color: var(--color-navy);
+  color: var(--color-navy);
+}
+
+/* Right panel */
+.rightPanel {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.rightPanel::-webkit-scrollbar {
+  width: 4px;
+}
+.rightPanel::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 2px;
+}
+
+/* Video upload zone */
+.videoZone {
+  flex-shrink: 0;
+  aspect-ratio: 16/9;
+  max-height: 40vh;
+  background: var(--color-navy);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.videoZone:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.uploadBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+
+.uploadBtn:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.uploadIcon {
+  font-size: 28px;
+}
+
+/* Lesson editor */
+.editorBody {
+  padding: 32px 48px;
+  flex: 1;
+}
+
+.breadcrumb {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 10px;
+}
+
+.lessonTitleInput {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-navy);
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  margin-bottom: 24px;
+  padding: 0;
+}
+
+.lessonTitleInput::placeholder {
+  color: var(--color-border);
+}
+
+/* Block divider */
+.blockDivider {
+  position: relative;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.blockDivider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.addBlockBtn {
+  position: relative;
+  z-index: 1;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-cream-card);
+  border: 1.5px solid var(--color-border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--color-text-muted);
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.addBlockBtn:hover {
+  border-color: var(--color-navy);
+  color: var(--color-navy);
+}
+
+/* Block toolbar */
+.blockToolbar {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin: 8px 0 16px;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.blockOption {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-cream-card);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-navy);
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.blockOption:hover {
+  border-color: var(--color-navy);
+  background: var(--color-cream);
+}
+
+.blockIcon {
+  font-size: 15px;
+}
+
+/* Content textarea */
+.contentTextarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  resize: none;
+  min-height: 200px;
+  font-family: var(--font-sans);
+}
+
+.contentTextarea::placeholder {
+  color: var(--color-border);
+}
