@@ -1,10 +1,35 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/AVGuitareFormation/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>guitare-formation</title>
+    <title>Guitare Formation</title>
+    <script>
+      // Restaure le chemin encodé par 404.html (SPA redirect trick pour GitHub Pages)
+      (function () {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+        var search = location.search;
+        if (search.indexOf('p=/') > -1) {
+          var decoded = search.slice(1).split('&').reduce(function (o, kv) {
+            var kva = kv.split('=');
+            o[kva[0]] = kva.slice(1).join('=').replace(/~and~/g, '&');
+            return o;
+          }, {});
+          if (decoded.p) {
+            history.replaceState(
+              null, null,
+              location.pathname.split('/').slice(0, 2).join('/') + decoded.p +
+              (decoded.q ? '?' + decoded.q : '') + location.hash
+            );
+          }
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
