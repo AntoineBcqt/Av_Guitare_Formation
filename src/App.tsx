@@ -23,7 +23,7 @@ import { RoleSwitcher } from './components/RoleSwitcher/RoleSwitcher';
 
 export default function App() {
   return (
-    <BrowserRouter basename="/AVGuitareFormation">
+    <BrowserRouter basename="/Av_Guitare_Formation">
       <Routes>
         {/* Root redirect */}
         <Route path="/" element={<Navigate to="/mon-espace" replace />} />

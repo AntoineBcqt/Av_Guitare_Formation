@@ -11,7 +11,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
-  "homepage": "https://AntoineBcqt.github.io/AVGuitareFormation",
+  "homepage": "https://AntoineBcqt.github.io/Av_Guitare_Formation",
   "dependencies": {
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
