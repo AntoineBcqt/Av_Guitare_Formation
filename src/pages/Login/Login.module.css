@@ -1,0 +1,317 @@
+/* ── Page shell ── */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── Minimal navbar ── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 64px;
+  background: transparent;
+}
+
+.navLogo {
+  height: 36px;
+  width: auto;
+}
+
+.navLink {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #1B3A4B;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s;
+}
+
+.navLink:hover {
+  opacity: 0.7;
+}
+
+/* ── Split layout ── */
+.split {
+  display: flex;
+  flex: 1;
+  min-height: 100vh;
+}
+
+/* ── Left pane (cream) ── */
+.left {
+  flex: 1;
+  background: #F5F0E8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 3rem 3rem;
+}
+
+.formWrap {
+  width: 100%;
+  max-width: 400px;
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #b8973a;
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #1B3A4B;
+  line-height: 1.15;
+  margin: 0 0 0.75rem;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: #5a6a80;
+  margin: 0 0 2rem;
+  line-height: 1.5;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #2d3d55;
+  letter-spacing: 0.01em;
+}
+
+.input {
+  height: 48px;
+  padding: 0 1rem;
+  border: 1.5px solid #DDD5C2;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.95rem;
+  color: #1B3A4B;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input::placeholder {
+  color: #bbb;
+}
+
+.input:focus {
+  border-color: #1B3A4B;
+  box-shadow: 0 0 0 3px rgba(27, 42, 74, 0.08);
+}
+
+.forgotBtn {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.78rem;
+  color: #b8973a;
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: underline;
+  margin-top: 0.15rem;
+}
+
+.forgotBtn:hover {
+  opacity: 0.8;
+}
+
+.error {
+  font-size: 0.83rem;
+  color: #c0392b;
+  background: #fdf0ee;
+  border: 1px solid #f5c6c0;
+  border-radius: 6px;
+  padding: 0.6rem 0.9rem;
+}
+
+.submitBtn {
+  height: 50px;
+  background: #1B3A4B;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: inherit;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: #243660;
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Divider ── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+
+.divider > span:first-child,
+.divider > span:last-child {
+  flex: 1;
+  height: 1px;
+  background: #DDD5C2;
+}
+
+.dividerText {
+  font-size: 0.78rem;
+  color: #8a9ab5;
+  white-space: nowrap;
+  flex: none;
+}
+
+/* ── Register outline button ── */
+.registerBtn {
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border: 1.5px solid #1B3A4B;
+  border-radius: 8px;
+  color: #1B3A4B;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.registerBtn:hover {
+  background: rgba(27, 42, 74, 0.05);
+}
+
+.legal {
+  font-size: 0.72rem;
+  color: #9aabb8;
+  text-align: center;
+  margin-top: 1.25rem;
+}
+
+.legalLink {
+  color: #9aabb8;
+  text-decoration: underline;
+}
+
+/* ── Right pane (navy) ── */
+.right {
+  flex: 1;
+  background: #1B3A4B;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(184, 151, 58, 0.07) 0%, transparent 60%),
+    radial-gradient(circle at 80% 75%, rgba(255, 255, 255, 0.04) 0%, transparent 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 4rem 3rem;
+}
+
+.rightContent {
+  max-width: 420px;
+}
+
+.rightTitle {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  margin: 0 0 1.25rem;
+}
+
+.rightTitleItalic {
+  font-style: italic;
+  color: #d4a832;
+}
+
+.rightSub {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  margin: 0 0 2.25rem;
+}
+
+.featureList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.5;
+}
+
+.featureDot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d4a832;
+  margin-top: 0.4em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .split {
+    flex-direction: column;
+  }
+
+  .right {
+    display: none;
+  }
+
+  .navbar {
+    padding: 0 1.25rem;
+  }
+
+  .left {
+    padding: 5rem 1.5rem 2.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+}
