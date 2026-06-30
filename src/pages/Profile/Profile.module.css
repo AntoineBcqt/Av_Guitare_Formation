@@ -1,14 +1,14 @@
 .page {
-  max-width: var(--max-width);
+  max-width: 720px;
   margin: 0 auto;
   padding: 48px var(--px);
 }
 
-.pageHeader {
+.header {
   margin-bottom: 32px;
 }
 
-.pageTitle {
+.title {
   font-family: var(--font-serif);
   font-size: 32px;
   font-weight: 700;
@@ -16,50 +16,57 @@
   margin-bottom: 6px;
 }
 
-.pageSub {
+.subtitle {
   font-size: 15px;
   color: var(--color-text-muted);
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  align-items: start;
+/* Card stack */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .card {
   background: var(--color-cream-card);
   border-radius: var(--radius);
   border: 1px solid var(--color-border);
-  padding: 32px;
+  padding: 28px 32px;
+}
+
+.cardHeader {
+  margin-bottom: 20px;
 }
 
 .cardTitle {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--color-navy);
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 4px;
 }
 
-/* Avatar section */
-.avatarSection {
+.cardSubtitle {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+/* Avatar row */
+.avatarRow {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  margin-bottom: 28px;
+  gap: 14px;
+  margin-bottom: 24px;
 }
 
-.avatarLabel {
-  margin-top: 12px;
-  font-size: 18px;
+.avatarName {
+  font-size: 16px;
   font-weight: 700;
   color: var(--color-navy);
 }
 
-.avatarSub {
+.avatarRole {
   font-size: 13px;
   color: var(--color-text-muted);
 }
@@ -92,30 +99,49 @@
   font-size: 14px;
   outline: none;
   transition: border-color 0.15s;
-  background: var(--color-cream);
+  background: #fff;
   color: var(--color-text);
+  font-family: inherit;
 }
 
 .formInput:focus {
   border-color: var(--color-navy);
 }
 
-/* Level toggle */
+.formInputDisabled {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  background: var(--color-cream);
+  color: var(--color-text-muted);
+  font-family: inherit;
+  cursor: default;
+}
+
+.formHint {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+/* Level pills */
 .levelPills {
   display: flex;
   gap: 8px;
-  flex-wrap: wrap;
 }
 
 .levelPill {
-  padding: 8px 18px;
-  border-radius: 20px;
+  padding: 8px 20px;
+  border-radius: 6px;
   font-size: 13px;
   font-weight: 500;
   border: 1.5px solid var(--color-border);
   color: var(--color-text-muted);
-  background: var(--color-cream);
+  background: #fff;
   transition: all 0.15s;
+  font-family: inherit;
 }
 
 .levelPill:hover {
@@ -129,15 +155,17 @@
   color: #fff;
 }
 
+/* Save button */
 .saveBtn {
   background: var(--color-navy);
   color: #fff;
   font-size: 14px;
   font-weight: 600;
-  padding: 12px 24px;
-  border-radius: 10px;
+  padding: 11px 24px;
+  border-radius: 8px;
   margin-top: 8px;
   transition: opacity 0.15s;
+  font-family: inherit;
 }
 
 .saveBtn:hover {
@@ -146,13 +174,191 @@
 
 .savedMsg {
   font-size: 13px;
-  color: var(--color-success);
+  color: #22a35a;
   margin-top: 8px;
 }
 
-/* Security */
-.securityNote {
+/* Outline button (security) */
+.outlineBtn {
+  border: 1.5px solid var(--color-navy);
+  color: var(--color-navy);
+  background: none;
   font-size: 13px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-top: 16px;
+  transition: background 0.15s;
+  font-family: inherit;
+}
+
+.outlineBtn:hover {
+  background: rgba(27, 42, 74, 0.05);
+}
+
+/* Notification toggles */
+.toggleList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 20px;
+}
+
+.toggleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.toggleRow:last-child {
+  border-bottom: none;
+}
+
+.toggleLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-navy);
+  margin-bottom: 2px;
+}
+
+.toggleDesc {
+  font-size: 12px;
   color: var(--color-text-muted);
-  margin-bottom: 16px;
+}
+
+/* Toggle switch */
+.toggle {
+  flex-shrink: 0;
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
+  background: #d1d5db;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+  padding: 0;
+}
+
+.toggle.toggleOn {
+  background: var(--color-navy);
+}
+
+.toggleKnob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: left 0.2s;
+}
+
+.toggle.toggleOn .toggleKnob {
+  left: calc(100% - 21px);
+}
+
+/* RGPD block */
+.rgpdBlock {
+  margin-top: 20px;
+  background: #fdf8ee;
+  border: 1px solid #e8d9a8;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.rgpdTitle {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-navy);
+  margin-bottom: 10px;
+}
+
+.rgpdList {
+  padding-left: 16px;
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--color-text);
+  line-height: 1.7;
+}
+
+.rgpdLegal {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Danger zone */
+.dangerCard {
+  background: var(--color-cream-card);
+  border-radius: var(--radius);
+  border: 1.5px solid #e5383b;
+  padding: 28px 32px;
+}
+
+.dangerTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #c0392b;
+  margin-bottom: 4px;
+}
+
+.dangerList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 20px;
+}
+
+.dangerRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(229, 56, 59, 0.2);
+}
+
+.dangerRow:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.dangerAction {
+  font-size: 14px;
+  font-weight: 600;
+  color: #c0392b;
+  margin-bottom: 4px;
+}
+
+.dangerDesc {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.dangerOutlineBtn {
+  flex-shrink: 0;
+  border: 1.5px solid #c0392b;
+  color: #c0392b;
+  background: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  white-space: nowrap;
+  transition: background 0.15s;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.dangerOutlineBtn:hover {
+  background: rgba(192, 57, 43, 0.05);
 }

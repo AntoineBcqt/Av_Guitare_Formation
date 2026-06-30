@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import type { Level } from '../../types';
 import { useAuth } from '../../hooks/useAuth';
+import { useAuthContext } from '../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import { Avatar } from '../../components/Avatar/Avatar';
 import styles from './Profile.module.css';
 
@@ -8,39 +10,51 @@ const levels: Level[] = ['Débutant', 'Intermédiaire', 'Avancé'];
 
 export function Profile() {
   const { user } = useAuth();
+  const { logout } = useAuthContext();
+  const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
-  const [email, setEmail] = useState(user.email);
   const [level, setLevel] = useState<Level>(user.level ?? 'Débutant');
   const [saved, setSaved] = useState(false);
 
-  const [currentPwd, setCurrentPwd] = useState('');
-  const [newPwd, setNewPwd] = useState('');
-  const [confirmPwd, setConfirmPwd] = useState('');
+  const [notifLessons, setNotifLessons] = useState(true);
+  const [notifMessages, setNotifMessages] = useState(true);
+  const [notifCommunity, setNotifCommunity] = useState(false);
+
+  const initials = `${firstName[0] ?? ''}${lastName[0] ?? ''}`.toUpperCase();
 
   function handleSave() {
     setSaved(true);
     setTimeout(() => setSaved(false), 2500);
   }
 
-  const initials = `${firstName[0] ?? ''}${lastName[0] ?? ''}`.toUpperCase();
+  function handleLogout() {
+    logout();
+    navigate('/cours');
+  }
 
   return (
     <div className={styles.page}>
-      <div className={styles.pageHeader}>
-        <h1 className={styles.pageTitle}>Mon profil</h1>
-        <p className={styles.pageSub}>Gérez vos informations personnelles et votre sécurité.</p>
+      <div className={styles.header}>
+        <h1 className={styles.title}>Mon profil</h1>
+        <p className={styles.subtitle}>Gérez vos informations, votre sécurité et vos données personnelles.</p>
       </div>
 
-      <div className={styles.grid}>
+      <div className={styles.stack}>
+        {/* Informations personnelles */}
         <div className={styles.card}>
-          <div className={styles.cardTitle}>Informations personnelles</div>
+          <div className={styles.cardHeader}>
+            <div className={styles.cardTitle}>Informations personnelles</div>
+            <div className={styles.cardSubtitle}>Ces informations sont visibles dans la communauté.</div>
+          </div>
 
-          <div className={styles.avatarSection}>
-            <Avatar initials={initials} size={80} />
-            <div className={styles.avatarLabel}>{firstName} {lastName}</div>
-            <div className={styles.avatarSub}>Élève · {level}</div>
+          <div className={styles.avatarRow}>
+            <Avatar initials={initials} size={56} />
+            <div>
+              <div className={styles.avatarName}>{firstName} {lastName}</div>
+              <div className={styles.avatarRole}>Élève · {level}</div>
+            </div>
           </div>
 
           <div className={styles.formRow}>
@@ -65,13 +79,14 @@ export function Profile() {
           </div>
 
           <div className={styles.formField}>
-            <label className={styles.formLabel}>Email</label>
+            <label className={styles.formLabel}>Adresse email</label>
             <input
-              className={styles.formInput}
+              className={styles.formInputDisabled}
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={user.email}
+              readOnly
             />
+            <div className={styles.formHint}>Utilisée pour la connexion et les notifications.</div>
           </div>
 
           <div className={styles.formField}>
@@ -95,48 +110,113 @@ export function Profile() {
           {saved && <p className={styles.savedMsg}>✓ Modifications enregistrées</p>}
         </div>
 
+        {/* Sécurité */}
         <div className={styles.card}>
           <div className={styles.cardTitle}>Sécurité</div>
-          <p className={styles.securityNote}>
-            Choisissez un mot de passe fort d'au moins 8 caractères.
-          </p>
+          <div className={styles.cardSubtitle}>Gérez votre mot de passe et l'accès à votre compte.</div>
+          <button className={styles.outlineBtn}>Changer le mot de passe</button>
+        </div>
 
-          <div className={styles.formField}>
-            <label className={styles.formLabel}>Mot de passe actuel</label>
-            <input
-              className={styles.formInput}
-              type="password"
-              placeholder="••••••••"
-              value={currentPwd}
-              onChange={(e) => setCurrentPwd(e.target.value)}
-            />
+        {/* Notifications */}
+        <div className={styles.card}>
+          <div className={styles.cardTitle}>Notifications</div>
+          <div className={styles.cardSubtitle}>Choisissez les communications que vous souhaitez recevoir.</div>
+
+          <div className={styles.toggleList}>
+            <div className={styles.toggleRow}>
+              <div>
+                <div className={styles.toggleLabel}>Nouvelles leçons disponibles</div>
+                <div className={styles.toggleDesc}>Soyez informé(e) dès qu'une leçon est publiée.</div>
+              </div>
+              <button
+                className={[styles.toggle, notifLessons ? styles.toggleOn : ''].filter(Boolean).join(' ')}
+                onClick={() => setNotifLessons((v) => !v)}
+                aria-pressed={notifLessons}
+              >
+                <span className={styles.toggleKnob} />
+              </button>
+            </div>
+
+            <div className={styles.toggleRow}>
+              <div>
+                <div className={styles.toggleLabel}>Messages du professeur</div>
+                <div className={styles.toggleDesc}>Recevez une alerte email pour chaque message.</div>
+              </div>
+              <button
+                className={[styles.toggle, notifMessages ? styles.toggleOn : ''].filter(Boolean).join(' ')}
+                onClick={() => setNotifMessages((v) => !v)}
+                aria-pressed={notifMessages}
+              >
+                <span className={styles.toggleKnob} />
+              </button>
+            </div>
+
+            <div className={styles.toggleRow}>
+              <div>
+                <div className={styles.toggleLabel}>Activité communautaire</div>
+                <div className={styles.toggleDesc}>Réponses à vos posts et nouvelles discussions.</div>
+              </div>
+              <button
+                className={[styles.toggle, notifCommunity ? styles.toggleOn : ''].filter(Boolean).join(' ')}
+                onClick={() => setNotifCommunity((v) => !v)}
+                aria-pressed={notifCommunity}
+              >
+                <span className={styles.toggleKnob} />
+              </button>
+            </div>
           </div>
+        </div>
 
-          <div className={styles.formField}>
-            <label className={styles.formLabel}>Nouveau mot de passe</label>
-            <input
-              className={styles.formInput}
-              type="password"
-              placeholder="••••••••"
-              value={newPwd}
-              onChange={(e) => setNewPwd(e.target.value)}
-            />
+        {/* Données personnelles */}
+        <div className={styles.card}>
+          <div className={styles.cardTitle}>Mes données personnelles</div>
+          <div className={styles.cardSubtitle}>Vos droits au titre du RGPD (UE 2016/679) et de la loi Informatique et Libertés.</div>
+
+          <div className={styles.rgpdBlock}>
+            <div className={styles.rgpdTitle}>Données traitées</div>
+            <ul className={styles.rgpdList}>
+              <li>Identité : prénom, nom, adresse email</li>
+              <li>Données de navigation : progression, leçons consultées</li>
+              <li>Contenus générés : posts, messages</li>
+              <li>Données techniques : adresse IP, type de navigateur</li>
+            </ul>
+            <p className={styles.rgpdLegal}>
+              Base légale : exécution du contrat (Art. 6.1.b RGPD) · Consentement pour les communications commerciales (Art. 6.1.a RGPD)<br />
+              Durée de conservation : 3 ans après la dernière activité, puis archivage légal 5 ans.
+            </p>
           </div>
+        </div>
 
-          <div className={styles.formField}>
-            <label className={styles.formLabel}>Confirmer le nouveau mot de passe</label>
-            <input
-              className={styles.formInput}
-              type="password"
-              placeholder="••••••••"
-              value={confirmPwd}
-              onChange={(e) => setConfirmPwd(e.target.value)}
-            />
+        {/* Zone de danger */}
+        <div className={styles.dangerCard}>
+          <div className={styles.dangerTitle}>Zone de danger</div>
+          <div className={styles.cardSubtitle}>Ces actions sont irréversibles. Réfléchissez bien avant de continuer.</div>
+
+          <div className={styles.dangerList}>
+            <div className={styles.dangerRow}>
+              <div>
+                <div className={styles.dangerAction}>Désactiver mon compte</div>
+                <div className={styles.dangerDesc}>Votre profil devient invisible. Vous pouvez le réactiver à tout moment.</div>
+              </div>
+              <button className={styles.dangerOutlineBtn}>Désactiver</button>
+            </div>
+
+            <div className={styles.dangerRow}>
+              <div>
+                <div className={styles.dangerAction}>Supprimer définitivement mon compte</div>
+                <div className={styles.dangerDesc}>
+                  Toutes vos données seront effacées conformément à l'Art. 17 RGPD (droit à l'effacement).<br />
+                  Cette action est irréversible. Vos messages, progression et contenus seront supprimés.
+                </div>
+              </div>
+              <button className={styles.dangerOutlineBtn}>Supprimer mon compte</button>
+            </div>
+
+            <div className={styles.dangerRow}>
+              <div className={styles.dangerAction}>Se déconnecter</div>
+              <button className={styles.dangerOutlineBtn} onClick={handleLogout}>Se déconnecter</button>
+            </div>
           </div>
-
-          <button className={styles.saveBtn}>
-            Changer le mot de passe
-          </button>
         </div>
       </div>
     </div>

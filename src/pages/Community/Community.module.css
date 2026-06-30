@@ -31,62 +31,6 @@
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 40px var(--px);
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 32px;
-  align-items: start;
-}
-
-/* Sidebar */
-.sidebar {
-  position: sticky;
-  top: 84px;
-}
-
-.sidebarLabel {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  margin-bottom: 12px;
-}
-
-.categoryList {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.categoryBtn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-navy);
-  background: var(--color-cream-card);
-  border: 1px solid var(--color-border);
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
-  text-align: left;
-  width: 100%;
-}
-
-.categoryBtn:hover {
-  background: var(--color-cream);
-}
-
-.categoryBtn.active {
-  background: var(--color-navy);
-  color: #fff;
-  border-color: var(--color-navy);
-}
-
-.categoryCount {
-  font-size: 12px;
-  opacity: 0.6;
 }
 
 /* Main */
@@ -102,16 +46,32 @@
   align-items: center;
 }
 
-.searchInput {
+.searchWrap {
   flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 12px;
+  font-size: 14px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.searchInput {
+  width: 100%;
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  padding: 11px 16px;
+  padding: 11px 16px 11px 38px;
   font-size: 14px;
   background: var(--color-cream-card);
   outline: none;
   transition: border-color 0.15s;
   color: var(--color-text);
+  font-family: inherit;
 }
 
 .searchInput:focus {
@@ -145,15 +105,17 @@
 
 /* New post modal */
 .formField {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .formLabel {
   display: block;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--color-text);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .formInput {
@@ -175,13 +137,14 @@
   width: 100%;
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  padding: 10px 14px;
+  padding: 12px 14px;
   font-size: 14px;
   outline: none;
   transition: border-color 0.15s;
   background: var(--color-cream);
   resize: vertical;
-  min-height: 100px;
+  min-height: 160px;
+  font-family: inherit;
 }
 
 .formTextarea:focus {
@@ -218,32 +181,39 @@
 
 .modalFooter {
   display: flex;
-  justify-content: flex-end;
   gap: 12px;
   margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
 }
 
 .cancelBtn {
-  padding: 10px 20px;
+  flex: 1;
+  padding: 14px;
   border-radius: 8px;
-  font-size: 14px;
-  color: var(--color-text-muted);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-navy);
+  background: var(--color-cream);
   border: 1px solid var(--color-border);
   transition: background 0.15s;
+  font-family: inherit;
 }
 
 .cancelBtn:hover {
-  background: var(--color-cream);
+  background: var(--color-border);
 }
 
 .publishModalBtn {
-  padding: 10px 24px;
+  flex: 2;
+  padding: 14px;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   background: var(--color-navy);
   color: #fff;
   transition: opacity 0.15s;
+  font-family: inherit;
 }
 
 .publishModalBtn:hover {

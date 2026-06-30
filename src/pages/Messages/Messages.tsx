@@ -16,13 +16,13 @@ function getDateLabel(timestamp: string): string {
 export function Messages() {
   const { user } = useAuth();
   const { userCourses } = useCourses();
-  const { conversations, sendMessage } = useMessages();
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const hasPurchasedCourse = userCourses.length > 0;
-  const conversation = conversations[0];
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { conversation, sendMessage } = useMessages(user.id);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -48,7 +48,7 @@ export function Messages() {
   function handleSend() {
     const trimmed = inputValue.trim();
     if (!trimmed) return;
-    sendMessage(conversation.id, user.id, trimmed);
+    sendMessage(conversation.participantId, trimmed);
     setInputValue('');
   }
 

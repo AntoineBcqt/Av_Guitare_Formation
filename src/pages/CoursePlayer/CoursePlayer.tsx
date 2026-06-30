@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useCourses } from '../../hooks/useCourses';
 import { LessonSidebar } from '../../components/LessonSidebar/LessonSidebar';
-import type { Lesson } from '../../types';
+import type { Course, Lesson } from '../../types';
 import styles from './CoursePlayer.module.css';
 
 function findLesson(chapters: { id: string; title: string; lessons: Lesson[] }[], lessonId: string) {
@@ -31,15 +31,26 @@ const resources = [
 
 export function CoursePlayer() {
   const { courseId } = useParams<{ courseId: string }>();
-  const { getCourseById, getUserCourse } = useCourses();
+  const { fetchCourseById, getUserCourse } = useCourses();
   const navigate = useNavigate();
 
-  const course = courseId ? getCourseById(courseId) : undefined;
+  const [course, setCourse] = useState<Course | null>(null);
+  const [loadingCourse, setLoadingCourse] = useState(true);
   const userCourse = courseId ? getUserCourse(courseId) : undefined;
-
-  const firstLessonId = course?.chapters[0]?.lessons[0]?.id ?? '';
-  const [activeLessonId, setActiveLessonId] = useState(firstLessonId);
+  const [activeLessonId, setActiveLessonId] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(true);
+
+  useEffect(() => {
+    if (!courseId) return;
+    setLoadingCourse(true);
+    fetchCourseById(courseId).then((fetched) => {
+      setCourse(fetched);
+      setActiveLessonId(fetched?.chapters[0]?.lessons[0]?.id ?? '');
+      setLoadingCourse(false);
+    });
+  }, [courseId]);
+
+  if (loadingCourse) return null;
 
   if (!course) {
     return (

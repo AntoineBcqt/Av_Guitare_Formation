@@ -1,27 +1,15 @@
 import { useState } from 'react';
-import type { PostCategory } from '../../types';
 import { usePosts } from '../../hooks/usePosts';
 import { useAuth } from '../../hooks/useAuth';
 import { PostCard } from '../../components/PostCard/PostCard';
 import { Modal } from '../../components/Modal/Modal';
 import styles from './Community.module.css';
 
-type CategoryWithAll = PostCategory;
-
-const categories: { label: CategoryWithAll; count: number }[] = [
-  { label: 'Tous les posts', count: 156 },
-  { label: 'Débutant', count: 64 },
-  { label: 'Technique', count: 42 },
-  { label: 'Matériel', count: 28 },
-  { label: 'Théorie', count: 22 },
-];
-
 const postCategories = ['Débutant', 'Technique', 'Matériel', 'Théorie'] as const;
 
 export function Community() {
   const { user } = useAuth();
   const { posts, addPost, addReply } = usePosts();
-  const [activeCategory, setActiveCategory] = useState<CategoryWithAll>('Tous les posts');
   const [search, setSearch] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -29,14 +17,11 @@ export function Community() {
   const [newContent, setNewContent] = useState('');
   const [newCategory, setNewCategory] = useState<(typeof postCategories)[number]>('Débutant');
 
-  const filtered = posts.filter((p) => {
-    const matchesCategory = activeCategory === 'Tous les posts' || p.category === activeCategory;
-    const matchesSearch =
-      search === '' ||
-      p.title.toLowerCase().includes(search.toLowerCase()) ||
-      p.content.toLowerCase().includes(search.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+  const filtered = posts.filter((p) =>
+    search === '' ||
+    p.title.toLowerCase().includes(search.toLowerCase()) ||
+    p.content.toLowerCase().includes(search.toLowerCase())
+  );
 
   function handlePublish() {
     if (!newTitle.trim() || !newContent.trim()) return;
@@ -69,31 +54,18 @@ export function Community() {
       </div>
 
       <div className={styles.body}>
-        <aside className={styles.sidebar}>
-          <div className={styles.sidebarLabel}>Catégories</div>
-          <div className={styles.categoryList}>
-            {categories.map(({ label, count }) => (
-              <button
-                key={label}
-                className={[styles.categoryBtn, activeCategory === label ? styles.active : ''].filter(Boolean).join(' ')}
-                onClick={() => setActiveCategory(label)}
-              >
-                <span>{label}</span>
-                <span className={styles.categoryCount}>{count}</span>
-              </button>
-            ))}
-          </div>
-        </aside>
-
         <div className={styles.main}>
           <div className={styles.topBar}>
-            <input
-              className={styles.searchInput}
-              type="text"
-              placeholder="Rechercher un post..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+            <div className={styles.searchWrap}>
+              <span className={styles.searchIcon}>🔍</span>
+              <input
+                className={styles.searchInput}
+                type="text"
+                placeholder="Rechercher..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
             <button className={styles.newPostBtn} onClick={() => setModalOpen(true)}>
               + Nouveau post
             </button>
@@ -123,7 +95,7 @@ export function Community() {
       {modalOpen && (
         <Modal title="Nouveau post" onClose={() => setModalOpen(false)}>
           <div className={styles.formField}>
-            <label className={styles.formLabel}>Titre</label>
+            <label className={styles.formLabel}>Titre *</label>
             <input
               className={styles.formInput}
               type="text"
@@ -134,7 +106,7 @@ export function Community() {
           </div>
 
           <div className={styles.formField}>
-            <label className={styles.formLabel}>Contenu</label>
+            <label className={styles.formLabel}>Contenu *</label>
             <textarea
               className={styles.formTextarea}
               placeholder="Décrivez votre question ou partagez votre expérience..."
