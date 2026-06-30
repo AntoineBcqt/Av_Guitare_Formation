@@ -15,6 +15,7 @@ const navItems = [
   { label: 'Élèves', to: '/professeur/eleves' },
   { label: 'Communauté', to: '/professeur/communaute' },
   { label: 'Messages', to: '/professeur/messages' },
+  { label: 'Achats', to: '/professeur/achats' },
 ];
 
 export function TeacherSidebar({ teacher, hasUnread = false }: TeacherSidebarProps) {

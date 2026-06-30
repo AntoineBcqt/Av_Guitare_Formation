@@ -4,6 +4,7 @@ import { PublicNavbar } from '../../components/PublicNavbar/PublicNavbar';
 import { PublicFooter } from '../../components/PublicFooter/PublicFooter';
 import { api } from '../../lib/api';
 import { mapPack, type ApiPack } from '../../lib/mappers';
+import { logPurchase } from '../../lib/purchaseLog';
 import { useAuthContext } from '../../contexts/AuthContext';
 import type { Course } from '../../types';
 import styles from './PackDetail.module.css';
@@ -24,7 +25,7 @@ function getDuration(i: number) {
 export function PackDetail() {
   const { courseId } = useParams<{ courseId: string }>();
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuthContext();
+  const { isAuthenticated, user } = useAuthContext();
 
   const [course, setCourse] = useState<Course | null>(null);
   const [rawPrice, setRawPrice] = useState<number>(0);
@@ -58,6 +59,15 @@ export function PackDetail() {
     setBuying(true);
     try {
       await api.post(`/purchases/packs/${courseId}`);
+      if (user) {
+        logPurchase({
+          studentName: `${user.firstName} ${user.lastName}`,
+          studentEmail: user.email,
+          packId: courseId,
+          packTitle: course.title,
+          price: 0,
+        });
+      }
       navigate(`/mon-espace/cours/${courseId}`);
     } catch {
       setBuying(false);

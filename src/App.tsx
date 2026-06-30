@@ -27,6 +27,7 @@ import { ProfCourseEditor } from './pages/ProfCourseEditor/ProfCourseEditor';
 import { ProfEleves } from './pages/ProfEleves/ProfEleves';
 import { ProfCommunity } from './pages/ProfCommunity/ProfCommunity';
 import { ProfMessages } from './pages/ProfMessages/ProfMessages';
+import { ProfAchats } from './pages/ProfAchats/ProfAchats';
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useAuthContext();
@@ -80,6 +81,7 @@ function AppRoutes() {
         <Route path="/professeur/eleves" element={<ProfEleves />} />
         <Route path="/professeur/communaute" element={<ProfCommunity />} />
         <Route path="/professeur/messages" element={<ProfMessages />} />
+        <Route path="/professeur/achats" element={<ProfAchats />} />
       </Route>
     </Routes>
   );

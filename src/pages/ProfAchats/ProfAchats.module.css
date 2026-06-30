@@ -1,0 +1,131 @@
+.page {
+  padding: 40px;
+  min-height: 100%;
+}
+
+.pageHeader {
+  margin-bottom: 24px;
+}
+
+.pageTitle {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin-bottom: 4px;
+}
+
+.pageCount {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.statsRow {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.statCard {
+  flex: 1;
+  background: var(--color-cream-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+}
+
+.statLabel {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+}
+
+.statValue {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-navy);
+}
+
+.card {
+  background: var(--color-cream-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-muted);
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.table td {
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.studentCell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.studentName {
+  font-weight: 600;
+  color: var(--color-navy);
+}
+
+.studentEmail {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.packTitle {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.price {
+  font-weight: 700;
+  color: var(--color-gold);
+}
+
+.freeLabel {
+  font-weight: 600;
+  color: var(--color-success);
+  font-size: 13px;
+}
+
+.date {
+  color: var(--color-text-muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}

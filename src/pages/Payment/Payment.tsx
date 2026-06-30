@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Navbar } from '../../components/Navbar/Navbar';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { api } from '../../lib/api';
+import { logPurchase } from '../../lib/purchaseLog';
+import type { ApiPack } from '../../lib/mappers';
 import styles from './Payment.module.css';
 
 const CARD_ICONS = ['VISA', 'MC', 'AMEX', 'DISC'];
@@ -32,6 +34,15 @@ export function Payment() {
 
   const [processing, setProcessing] = useState(false);
   const [error, setError] = useState('');
+  const [pack, setPack] = useState<{ title: string; price: number } | null>(null);
+
+  useEffect(() => {
+    if (!courseId) return;
+    api
+      .get<ApiPack>(`/packs/${courseId}`, false)
+      .then((p) => setPack({ title: p.title, price: p.price ?? 0 }))
+      .catch(() => setPack(null));
+  }, [courseId]);
 
   async function handlePay(e: { preventDefault(): void }) {
     e.preventDefault();
@@ -50,6 +61,15 @@ export function Payment() {
 
     try {
       await api.post(`/purchases/packs/${courseId}`);
+      if (courseId && user && pack) {
+        logPurchase({
+          studentName: `${user.firstName} ${user.lastName}`,
+          studentEmail: user.email,
+          packId: courseId,
+          packTitle: pack.title,
+          price: pack.price,
+        });
+      }
       navigate(`/mon-espace/cours/${courseId}`, { replace: true });
     } catch {
       setError('Une erreur est survenue lors du paiement. Veuillez réessayer.');
@@ -63,6 +83,12 @@ export function Payment() {
 
       <main className={styles.main}>
         <form className={styles.form} onSubmit={handlePay}>
+          {pack && (
+            <div className={styles.summary}>
+              <span>{pack.title}</span>
+              <span>{pack.price} €</span>
+            </div>
+          )}
           <div className={styles.field}>
             <label className={styles.label}>Email</label>
             <input
