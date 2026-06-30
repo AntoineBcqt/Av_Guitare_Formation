@@ -28,26 +28,39 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(10, 20, 40, 0.55);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.lockCircle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(27, 42, 74, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 18px;
 }
 
-.lockIcon {
-  font-size: 32px;
-  opacity: 0.9;
+.overlayLabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .priceBadge {
-  position: absolute;
-  top: 12px;
-  right: 12px;
   background: var(--color-gold);
   color: #fff;
   font-size: 13px;
   font-weight: 700;
-  padding: 4px 10px;
+  padding: 3px 12px;
   border-radius: 20px;
 }
 
@@ -128,10 +141,15 @@
   width: 34px;
   height: 34px;
   border-radius: 8px;
-  background: var(--color-cream);
+  background: var(--color-navy);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  color: var(--color-text-muted);
+  font-size: 15px;
+  color: #fff;
+  transition: opacity 0.15s;
+}
+
+.btnLock:hover {
+  opacity: 0.85;
 }

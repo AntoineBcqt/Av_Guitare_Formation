@@ -29,11 +29,9 @@ export function PostCard({ post, currentUserInitials, onReply }: PostCardProps) 
       <div className={styles.header}>
         <Avatar initials={post.authorInitials} size={40} />
         <div className={styles.authorInfo}>
-          <div className={styles.authorName}>{post.author}</div>
-          <div className={styles.meta}>
-            <span className={styles.categoryBadge}>{post.category}</span>
-            <span>{post.timestamp}</span>
-          </div>
+          <span className={styles.authorName}>{post.author}</span>
+          <span className={styles.timestamp}>{post.timestamp}</span>
+          <span className={styles.categoryBadge}>{post.category}</span>
         </div>
       </div>
 

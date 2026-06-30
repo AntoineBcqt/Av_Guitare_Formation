@@ -16,6 +16,8 @@ export function CourseCard({ course, userCourse, isOwned, onPremiumClick }: Cour
   function handleActionClick() {
     if (isPremiumLocked) {
       onPremiumClick(course);
+    } else if (isOwned) {
+      navigate(`/mon-espace/cours/${course.id}`);
     } else {
       navigate(`/cours/${course.id}`);
     }
@@ -25,14 +27,13 @@ export function CourseCard({ course, userCourse, isOwned, onPremiumClick }: Cour
     <div className={styles.card}>
       <div className={styles.imageWrapper}>
         <img src={course.thumbnail} alt={course.title} className={styles.image} />
+        <span className={styles.levelBadge}>{course.level}</span>
         {isPremiumLocked && (
           <div className={styles.overlay}>
-            <span className={styles.lockIcon}>🔒</span>
+            <div className={styles.lockCircle}>🔒</div>
+            <div className={styles.overlayLabel}>Cours premium</div>
+            {course.price && <span className={styles.priceBadge}>{course.price} €</span>}
           </div>
-        )}
-        <span className={styles.levelBadge}>{course.level}</span>
-        {course.isPremium && course.price && (
-          <span className={styles.priceBadge}>{course.price} €</span>
         )}
       </div>
 

@@ -1,15 +1,18 @@
 import { useState, useRef, useEffect } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import type { User } from '../../types';
 import { Avatar } from '../Avatar/Avatar';
+import { useAuthContext } from '../../contexts/AuthContext';
 import logoUrl from '../../assets/logo.svg';
 import styles from './Navbar.module.css';
 
 interface NavbarProps {
-  user: User;
+  user: User | null;
 }
 
-const navItems = [
+const guestNavItems = [{ label: 'Cours', to: '/cours' }];
+
+const authNavItems = [
   { label: 'Mon Espace', to: '/mon-espace' },
   { label: 'Cours', to: '/cours' },
   { label: 'Communauté', to: '/communaute' },
@@ -17,6 +20,7 @@ const navItems = [
 ];
 
 export function Navbar({ user }: NavbarProps) {
+  const { logout } = useAuthContext();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -31,10 +35,12 @@ export function Navbar({ user }: NavbarProps) {
     return () => document.removeEventListener('mousedown', handleClick);
   }, []);
 
+  const navItems = user ? authNavItems : guestNavItems;
+
   return (
     <header className={styles.navbar}>
       <div className={styles.inner}>
-        <NavLink to="/mon-espace" className={styles.logo}>
+        <NavLink to="/cours" className={styles.logo}>
           <img src={logoUrl} alt="AV Guitare Formation" className={styles.logoImg} />
         </NavLink>
 
@@ -53,28 +59,37 @@ export function Navbar({ user }: NavbarProps) {
         </nav>
 
         <div className={styles.right} ref={dropdownRef}>
-          <button
-            className={[styles.avatarBtn, dropdownOpen ? styles.open : ''].filter(Boolean).join(' ')}
-            onClick={() => setDropdownOpen((v) => !v)}
-            aria-label="Menu utilisateur"
-          >
-            <Avatar initials={user.initials} size={38} />
-          </button>
+          {user ? (
+            <>
+              <button
+                className={[styles.avatarBtn, dropdownOpen ? styles.open : ''].filter(Boolean).join(' ')}
+                onClick={() => setDropdownOpen((v) => !v)}
+                aria-label="Menu utilisateur"
+              >
+                <Avatar initials={user.initials} size={38} />
+              </button>
 
-          {dropdownOpen && (
-            <div className={styles.dropdown}>
-              <button
-                className={styles.dropdownItem}
-                onClick={() => { setDropdownOpen(false); navigate('/profil'); }}
-              >
-                Mon profil
-              </button>
-              <button
-                className={[styles.dropdownItem, styles.danger].join(' ')}
-                onClick={() => setDropdownOpen(false)}
-              >
-                Déconnexion
-              </button>
+              {dropdownOpen && (
+                <div className={styles.dropdown}>
+                  <button
+                    className={styles.dropdownItem}
+                    onClick={() => { setDropdownOpen(false); navigate('/profil'); }}
+                  >
+                    Mon profil
+                  </button>
+                  <button
+                    className={[styles.dropdownItem, styles.danger].join(' ')}
+                    onClick={() => { setDropdownOpen(false); logout(); navigate('/cours'); }}
+                  >
+                    Déconnexion
+                  </button>
+                </div>
+              )}
+            </>
+          ) : (
+            <div className={styles.guestActions}>
+              <Link to="/login" className={styles.loginLink}>Se connecter</Link>
+              <Link to="/register" className={styles.registerLink}>S'inscrire</Link>
             </div>
           )}
         </div>
