@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTeacher } from '../../hooks/useTeacher';
 import { useTeacherCourses } from '../../hooks/useTeacherCourses';
 import { useTeacherMessages } from '../../hooks/useTeacherMessages';
-import { studentProgress } from '../../mock/teacherStudentProgress';
+import { useStudents } from '../../hooks/useStudents';
 import { ProgressBar } from '../../components/ProgressBar/ProgressBar';
 import { Avatar } from '../../components/Avatar/Avatar';
 import styles from './ProfDashboard.module.css';
@@ -17,7 +17,8 @@ export function ProfDashboard() {
   const navigate = useNavigate();
   const { teacher } = useTeacher();
   const { courses } = useTeacherCourses();
-  const { conversations } = useTeacherMessages();
+  const { conversations } = useTeacherMessages(teacher.id);
+  const { students } = useStudents();
 
   const unreadCount = conversations.filter((c) => c.unread).length;
   const recentConversations = conversations.slice(0, 4);
@@ -54,37 +55,37 @@ export function ProfDashboard() {
             <thead>
               <tr>
                 <th>Élève</th>
-                <th>Cours en cours</th>
                 <th>Progression</th>
-                <th>Action</th>
+                <th>Dernier cours</th>
+                <th>Action rapide</th>
               </tr>
             </thead>
             <tbody>
-              {studentProgress.map((entry) => (
-                <tr key={entry.studentId}>
+              {students.slice(0, 5).map((student) => (
+                <tr key={student.id}>
                   <td>
                     <div className={styles.studentCell}>
-                      <Avatar initials={entry.studentInitials} size={34} />
-                      <span className={styles.studentName}>{entry.studentName}</span>
+                      <Avatar initials={student.initials} size={34} />
+                      <span className={styles.studentName}>{student.firstName} {student.lastName}</span>
                     </div>
-                  </td>
-                  <td>
-                    <span className={styles.courseNameCell}>{entry.currentCourse}</span>
                   </td>
                   <td>
                     <div className={styles.progressCell}>
                       <div className={styles.progressRow}>
-                        <ProgressBar value={entry.progress} />
-                        <span className={styles.progressPct}>{entry.progress}%</span>
+                        <ProgressBar value={0} />
+                        <span className={styles.progressPct}>—</span>
                       </div>
                     </div>
+                  </td>
+                  <td>
+                    <span className={styles.courseNameCell}>{student.coursesCount} cours</span>
                   </td>
                   <td>
                     <button
                       className={styles.msgActionBtn}
                       onClick={() => navigate('/professeur/messages')}
                     >
-                      💬 Message
+                      ○ Message
                     </button>
                   </td>
                 </tr>

@@ -1,5 +1,6 @@
-import { MOCK_TEACHER } from '../mock/teacher';
+import { useAuth } from './useAuth';
 
 export function useTeacher() {
-  return { teacher: MOCK_TEACHER };
+  const { user } = useAuth();
+  return { teacher: user };
 }
