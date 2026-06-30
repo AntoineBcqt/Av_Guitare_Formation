@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTeacherCourses } from '../../hooks/useTeacherCourses';
 import type { Chapter, Lesson } from '../../types';
@@ -9,11 +9,25 @@ type BlockType = 'heading' | 'text' | 'image';
 let lessonIdCounter = 5000;
 let chapterIdCounter = 500;
 
+const DEFAULT_FIRST_LESSON: Lesson = {
+  id: 'new-l1',
+  title: 'Introduction',
+  duration: '15 min',
+  completed: false,
+  locked: false,
+};
+
+const DEFAULT_FIRST_CHAPTER: Chapter = {
+  id: 'new-ch1',
+  title: 'Chapitre 1',
+  lessons: [DEFAULT_FIRST_LESSON],
+};
+
 function buildInitialLessonContents(chapters: Chapter[]): Record<string, string> {
   const contents: Record<string, string> = {};
   for (const ch of chapters) {
     for (const lesson of ch.lessons) {
-      contents[lesson.id] = `Dans cette leçon, nous allons explorer les techniques essentielles et les exercices pratiques qui vous permettront de progresser rapidement. Prenez le temps d'assimiler chaque concept avant de passer à la suivante.\n\nÉcoutez attentivement les exemples audio et reproduisez ce que vous entendez. La répétition régulière est la clé de la maîtrise.`;
+      contents[lesson.id] = '';
     }
   }
   return contents;
@@ -22,40 +36,52 @@ function buildInitialLessonContents(chapters: Chapter[]): Record<string, string>
 export function ProfCourseEditor() {
   const { courseId } = useParams<{ courseId: string }>();
   const navigate = useNavigate();
-  const { getCourseById } = useTeacherCourses();
+  const { fetchCourseById, addCourse, updateCourse } = useTeacherCourses();
 
-  const course = courseId ? getCourseById(courseId) : undefined;
+  const isNew = courseId === 'new';
 
-  const [courseTitle, setCourseTitle] = useState(course?.title ?? '');
-  const [courseDescription, setCourseDescription] = useState(course?.description ?? '');
-  const [isPaid, setIsPaid] = useState(!!course?.price);
-  const [price, setPrice] = useState(course?.price?.toString() ?? '');
-  const [chapters, setChapters] = useState<Chapter[]>(course?.chapters ?? []);
+  const [courseTitle, setCourseTitle] = useState('');
+  const [courseDescription, setCourseDescription] = useState('');
+  const [isPaid, setIsPaid] = useState(false);
+  const [price, setPrice] = useState('');
+  const [chapters, setChapters] = useState<Chapter[]>(isNew ? [DEFAULT_FIRST_CHAPTER] : []);
   const [selectedLessonId, setSelectedLessonId] = useState<string>(
-    course?.chapters[0]?.lessons[0]?.id ?? ''
+    isNew ? DEFAULT_FIRST_LESSON.id : ''
   );
   const [lessonContents, setLessonContents] = useState<Record<string, string>>(
-    course ? buildInitialLessonContents(course.chapters) : {}
+    isNew ? { [DEFAULT_FIRST_LESSON.id]: '' } : {}
   );
-  const [lessonTitles, setLessonTitles] = useState<Record<string, string>>(() => {
-    const map: Record<string, string> = {};
-    for (const ch of course?.chapters ?? []) {
-      for (const l of ch.lessons) { map[l.id] = l.title; }
-    }
-    return map;
-  });
+  const [lessonTitles, setLessonTitles] = useState<Record<string, string>>(
+    isNew ? { [DEFAULT_FIRST_LESSON.id]: DEFAULT_FIRST_LESSON.title } : {}
+  );
   const [showBlockToolbar, setShowBlockToolbar] = useState(false);
+  const [publishing, setPublishing] = useState(false);
+  const [loadingCourse, setLoadingCourse] = useState(!isNew);
 
-  if (!course) {
-    return (
-      <div style={{ padding: 40 }}>
-        <button onClick={() => navigate('/professeur/mes-cours')} style={{ color: 'var(--color-gold)' }}>
-          ← Retour aux cours
-        </button>
-        <p style={{ marginTop: 16 }}>Cours introuvable.</p>
-      </div>
-    );
-  }
+  useEffect(() => {
+    if (isNew || !courseId) return;
+    setLoadingCourse(true);
+    fetchCourseById(courseId).then((fetched) => {
+      if (!fetched) { setLoadingCourse(false); return; }
+      setCourseTitle(fetched.title);
+      setCourseDescription(fetched.description ?? '');
+      setIsPaid(!!fetched.price);
+      setPrice(fetched.price?.toString() ?? '');
+      setChapters(fetched.chapters);
+      setSelectedLessonId(fetched.chapters[0]?.lessons[0]?.id ?? '');
+      setLessonContents(buildInitialLessonContents(fetched.chapters));
+      setLessonTitles(() => {
+        const map: Record<string, string> = {};
+        for (const ch of fetched.chapters) {
+          for (const l of ch.lessons) { map[l.id] = l.title; }
+        }
+        return map;
+      });
+      setLoadingCourse(false);
+    });
+  }, [courseId]);
+
+  if (!isNew && loadingCourse) return null;
 
   const selectedLesson = chapters
     .flatMap((ch) => ch.lessons)
@@ -64,10 +90,8 @@ export function ProfCourseEditor() {
   let globalLessonNum = 0;
 
   function getChapterAndLessonIndex(lessonId: string) {
-    let n = 0;
     for (let ci = 0; ci < chapters.length; ci++) {
       for (let li = 0; li < chapters[ci].lessons.length; li++) {
-        n++;
         if (chapters[ci].lessons[li].id === lessonId) {
           return { chapterIndex: ci + 1, lessonIndex: li + 1 };
         }
@@ -127,6 +151,41 @@ export function ProfCourseEditor() {
     setShowBlockToolbar(false);
   }
 
+  async function handlePublish() {
+    if (publishing) return;
+    setPublishing(true);
+    try {
+      const courseData = {
+        title: courseTitle || 'Nouveau cours',
+        description: courseDescription,
+        level: 'Débutant' as const,
+        isPremium: isPaid,
+        price: isPaid ? Math.round(Number(price) || 0) : 0,
+        chaptersCount: chapters.length,
+        lessonsCount: chapters.reduce((acc, ch) => acc + ch.lessons.length, 0),
+        totalDuration: '0h',
+        thumbnail: '',
+        teacherId: '',
+        chapters: chapters.map((ch) => ({
+          ...ch,
+          lessons: ch.lessons.map((l) => ({
+            ...l,
+            title: lessonTitles[l.id] ?? l.title,
+          })),
+        })),
+      };
+      if (isNew) {
+        const newId = await addCourse(courseData);
+        if (newId) navigate('/professeur/mes-cours?saved=1', { replace: true });
+      } else if (courseId) {
+        await updateCourse(courseId, courseData);
+        navigate('/professeur/mes-cours?saved=1', { replace: true });
+      }
+    } finally {
+      setPublishing(false);
+    }
+  }
+
   const { chapterIndex, lessonIndex } = getChapterAndLessonIndex(selectedLessonId);
 
   return (
@@ -138,12 +197,15 @@ export function ProfCourseEditor() {
             ← Retour
           </button>
           <div className={styles.panelLabel}>Paramètres du cours</div>
+          <button className={styles.publishBtn} onClick={handlePublish} disabled={publishing}>
+            {publishing ? 'Publication…' : (isNew ? 'Créer le cours' : 'Publier')}
+          </button>
         </div>
 
         {/* Title & description */}
         <div className={styles.fieldGroup}>
           <div>
-            <div className={styles.fieldLabel}>Titre (catalogue)</div>
+            <div className={styles.fieldLabel}>Titre (cours & catalogue)</div>
             <input
               className={styles.fieldInput}
               type="text"
@@ -153,7 +215,7 @@ export function ProfCourseEditor() {
             />
           </div>
           <div>
-            <div className={styles.fieldLabel}>Description</div>
+            <div className={styles.fieldLabel}>Description (catalogue)</div>
             <textarea
               className={styles.fieldTextarea}
               value={courseDescription}

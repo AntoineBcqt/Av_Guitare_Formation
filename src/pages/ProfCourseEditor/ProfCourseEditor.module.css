@@ -39,7 +39,7 @@
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--color-gold);
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .backBtn {
@@ -48,12 +48,28 @@
   gap: 6px;
   font-size: 13px;
   color: var(--color-text-muted);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   transition: color 0.15s;
 }
 
 .backBtn:hover {
   color: var(--color-navy);
+}
+
+.publishBtn {
+  width: 100%;
+  background: var(--color-navy);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 11px;
+  border-radius: 8px;
+  transition: opacity 0.15s;
+  font-family: inherit;
+}
+
+.publishBtn:hover {
+  opacity: 0.85;
 }
 
 /* Form fields */
