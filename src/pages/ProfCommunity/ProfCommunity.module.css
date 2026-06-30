@@ -1,18 +1,15 @@
 .page {
   padding: 40px;
+  max-width: 860px;
   min-height: 100%;
-}
-
-.pageHeader {
-  margin-bottom: 28px;
 }
 
 .pageTitle {
   font-family: var(--font-serif);
-  font-size: 30px;
+  font-size: 36px;
   font-weight: 700;
   color: var(--color-navy);
-  margin-bottom: 4px;
+  margin-bottom: 28px;
 }
 
 .pageTitle em {
@@ -20,90 +17,39 @@
   color: var(--color-gold);
 }
 
-.pageSub {
-  font-size: 14px;
-  color: var(--color-text-muted);
-}
-
-.body {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 28px;
-  align-items: start;
-}
-
-/* Sidebar */
-.sidebar {
-  position: sticky;
-  top: 20px;
-}
-
-.sidebarLabel {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  margin-bottom: 10px;
-}
-
-.categoryList {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.categoryBtn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 9px 14px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-navy);
-  background: var(--color-cream-card);
-  border: 1px solid var(--color-border);
-  width: 100%;
-  text-align: left;
-  transition: background 0.12s;
-}
-
-.categoryBtn:hover { background: var(--color-cream); }
-
-.categoryBtn.active {
-  background: var(--color-navy);
-  color: #fff;
-  border-color: var(--color-navy);
-}
-
-.categoryCount {
-  font-size: 12px;
-  opacity: 0.6;
-}
-
-/* Main */
-.main {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
 .topBar {
   display: flex;
   gap: 12px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.searchWrap {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 12px;
+  font-size: 14px;
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 .searchInput {
-  flex: 1;
+  width: 100%;
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  padding: 10px 16px;
+  padding: 10px 16px 10px 38px;
   font-size: 14px;
   background: var(--color-cream-card);
   outline: none;
   transition: border-color 0.15s;
   color: var(--color-text);
+  font-family: inherit;
 }
 
 .searchInput:focus { border-color: var(--color-navy); }
@@ -118,6 +64,7 @@
   border-radius: 8px;
   white-space: nowrap;
   transition: opacity 0.15s;
+  font-family: inherit;
 }
 
 .newPostBtn:hover { opacity: 0.85; }
@@ -129,25 +76,28 @@
 }
 
 /* Modal fields */
-.formField { margin-bottom: 16px; }
+.formField { margin-bottom: 20px; }
 
 .formLabel {
   display: block;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--color-text);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .formInput {
   width: 100%;
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  padding: 10px 14px;
+  padding: 12px 14px;
   font-size: 14px;
   outline: none;
   background: var(--color-cream);
   color: var(--color-text);
+  font-family: inherit;
   transition: border-color 0.15s;
 }
 
@@ -157,13 +107,14 @@
   width: 100%;
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  padding: 10px 14px;
+  padding: 12px 14px;
   font-size: 14px;
   outline: none;
   background: var(--color-cream);
   color: var(--color-text);
+  font-family: inherit;
   resize: vertical;
-  min-height: 100px;
+  min-height: 160px;
   transition: border-color 0.15s;
 }
 
@@ -183,6 +134,7 @@
   border: 1.5px solid var(--color-border);
   color: var(--color-text-muted);
   background: var(--color-cream);
+  font-family: inherit;
   transition: all 0.15s;
 }
 
@@ -196,29 +148,36 @@
 
 .modalFooter {
   display: flex;
-  justify-content: flex-end;
   gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
   margin-top: 8px;
 }
 
 .cancelBtn {
-  padding: 10px 20px;
+  flex: 1;
+  padding: 14px;
   border-radius: 8px;
-  font-size: 14px;
-  color: var(--color-text-muted);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-navy);
+  background: var(--color-cream);
   border: 1px solid var(--color-border);
+  font-family: inherit;
   transition: background 0.15s;
 }
 
-.cancelBtn:hover { background: var(--color-cream); }
+.cancelBtn:hover { background: var(--color-border); }
 
 .publishBtn {
-  padding: 10px 24px;
+  flex: 2;
+  padding: 14px;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   background: var(--color-navy);
   color: #fff;
+  font-family: inherit;
   transition: opacity 0.15s;
 }
 

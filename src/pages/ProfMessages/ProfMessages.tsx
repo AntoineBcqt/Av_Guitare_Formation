@@ -14,7 +14,7 @@ function getDateLabel(timestamp: string): string {
 export function ProfMessages() {
   const { teacher } = useTeacher();
   const { conversations, activeConversation, activeConversationId, selectConversation, sendMessage } =
-    useTeacherMessages();
+    useTeacherMessages(teacher.id);
   const [inputValue, setInputValue] = useState('');
   const [convSearch, setConvSearch] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
