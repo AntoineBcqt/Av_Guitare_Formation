@@ -6,7 +6,7 @@ import styles from './TeacherLayout.module.css';
 
 export function TeacherLayout() {
   const { teacher } = useTeacher();
-  const { conversations } = useTeacherMessages();
+  const { conversations } = useTeacherMessages(teacher.id);
   const hasUnread = conversations.some((c) => c.unread);
 
   return (

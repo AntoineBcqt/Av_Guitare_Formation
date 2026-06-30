@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom';
 import { Navbar } from '../components/Navbar/Navbar';
-import { useAuth } from '../hooks/useAuth';
+import { useAuthContext } from '../contexts/AuthContext';
 import styles from './StudentLayout.module.css';
 
 export function StudentLayout() {
-  const { user } = useAuth();
+  const { user } = useAuthContext();
 
   return (
     <div className={styles.layout}>

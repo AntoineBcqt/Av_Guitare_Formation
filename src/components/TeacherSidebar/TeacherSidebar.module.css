@@ -2,7 +2,8 @@
   width: 210px;
   min-width: 210px;
   height: 100vh;
-  background: var(--color-navy);
+  background: var(--color-cream-card);
+  border-right: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -10,35 +11,22 @@
 }
 
 .logoBlock {
-  padding: 24px 20px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 24px 20px 16px;
+  border-bottom: 1px solid var(--color-border);
 }
 
-.logoRow {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
-}
-
-.logoIcon {
-  font-size: 20px;
-}
-
-.logoText {
-  font-family: var(--font-serif);
-  font-size: 15px;
-  font-weight: 700;
-  color: #fff;
-  line-height: 1.2;
+.logoImg {
+  height: 44px;
+  width: auto;
+  display: block;
+  margin-bottom: 6px;
 }
 
 .roleLabel {
   font-size: 11px;
   font-weight: 600;
   color: var(--color-gold);
-  letter-spacing: 0.5px;
-  margin-left: 28px;
+  letter-spacing: 0.04em;
 }
 
 .nav {
@@ -52,35 +40,28 @@
 .navLink {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
   padding: 10px 12px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.6);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-text-muted);
   text-decoration: none;
   border-left: 3px solid transparent;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  transition: background 0.15s, color 0.15s;
   position: relative;
 }
 
 .navLink:hover {
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.9);
+  background: var(--color-cream);
+  color: var(--color-navy);
 }
 
 .navLink.active {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  border-left-color: var(--color-gold);
-  font-weight: 600;
-}
-
-.navIcon {
-  font-size: 16px;
-  width: 20px;
-  text-align: center;
-  flex-shrink: 0;
+  background: var(--color-cream);
+  color: var(--color-navy);
+  border-left-color: var(--color-navy);
+  font-weight: 700;
 }
 
 .unreadDot {
@@ -88,20 +69,15 @@
   height: 7px;
   border-radius: 50%;
   background: var(--color-gold);
-  margin-left: auto;
   flex-shrink: 0;
 }
 
 .footer {
   padding: 16px 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   gap: 10px;
-}
-
-.footerAvatar {
-  flex-shrink: 0;
 }
 
 .footerInfo {
@@ -111,7 +87,7 @@
 .footerName {
   font-size: 13px;
   font-weight: 600;
-  color: #fff;
+  color: var(--color-navy);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -119,5 +95,5 @@
 
 .footerRole {
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color-text-muted);
 }
