@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { Course, Level } from '../../types';
 import { useCourses } from '../../hooks/useCourses';
 import { CourseCard } from '../../components/CourseCard/CourseCard';
@@ -17,6 +18,7 @@ const benefits = [
 ];
 
 export function Catalogue() {
+  const navigate = useNavigate();
   const { courses, userCourses, isOwned } = useCourses();
   const [filter, setFilter] = useState<Filter>('Tous');
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
@@ -85,7 +87,21 @@ export function Catalogue() {
             ))}
           </div>
 
-          <button className={styles.buyBtn}>Accéder à ce cours →</button>
+          <button
+            className={styles.buyBtn}
+            disabled={false}
+            onClick={() => {
+              if (!selectedCourse) return;
+              setSelectedCourse(null);
+              if ((selectedCourse.price ?? 0) > 0) {
+                navigate(`/paiement/${selectedCourse.id}`);
+              } else {
+                navigate(`/cours/${selectedCourse.id}`);
+              }
+            }}
+          >
+            Accéder à ce cours →
+          </button>
           <div className={styles.stripeNote}>🔒 Paiement sécurisé · STRIPE</div>
         </Modal>
       )}
