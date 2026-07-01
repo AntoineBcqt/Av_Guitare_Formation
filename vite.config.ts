@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
-    base: '/Av_Guitare_Formation/',
+    base: env.VITE_BASE ?? '/Av_Guitare_Formation/',
     server: {
       proxy: {
         '/api': {
