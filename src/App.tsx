@@ -87,7 +87,7 @@ function AppRoutes() {
 
 export default function App() {
   return (
-    <BrowserRouter basename="/Av_Guitare_Formation">
+    <BrowserRouter basename="/">
       <AuthProvider>
         <AppRoutes />
       </AuthProvider>
