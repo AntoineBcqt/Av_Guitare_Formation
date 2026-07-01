@@ -1,6 +1,6 @@
 // Dev  : BASE_URL = '/api'  → proxy Vite → http://localhost:3000  (pas de CORS)
 // Prod : BASE_URL = valeur de VITE_API_URL (ex: 'https://api.monsite.com')
-const BASE_URL: string = import.meta.env.VITE_API_URL ?? '/api';
+const BASE_URL: string = import.meta.env.VITE_API_URL;
 
 export function setToken(token: string): void {
   localStorage.setItem('access_token', token);
