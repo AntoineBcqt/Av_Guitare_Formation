@@ -161,23 +161,3 @@
   color: var(--color-text-muted);
   font-size: 15px;
 }
-
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .page {
-    padding: 24px 20px;
-  }
-}
-
-@media (max-width: 600px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
-  .pageTitle {
-    font-size: 24px;
-  }
-}

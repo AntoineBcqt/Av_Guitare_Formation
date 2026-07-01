@@ -66,10 +66,3 @@ img {
 ul {
   list-style: none;
 }
-
-@media (max-width: 768px) {
-  :root {
-    --px: 20px;
-    --gap: 16px;
-  }
-}

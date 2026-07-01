@@ -274,32 +274,3 @@
 .sendBtn:hover {
   opacity: 0.85;
 }
-
-@media (max-width: 768px) {
-  .container {
-    height: calc(100vh - 64px);
-  }
-
-  .messagesArea {
-    padding: 16px;
-  }
-
-  .inputArea {
-    padding: 12px 16px;
-  }
-
-  .bubble {
-    max-width: 85%;
-  }
-}
-
-@media (max-width: 480px) {
-  .msgHeader {
-    padding: 12px 16px;
-  }
-
-  .sendBtn {
-    padding: 10px 14px;
-    font-size: 13px;
-  }
-}

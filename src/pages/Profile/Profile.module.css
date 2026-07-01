@@ -362,39 +362,3 @@
 .dangerOutlineBtn:hover {
   background: rgba(192, 57, 43, 0.05);
 }
-
-@media (max-width: 768px) {
-  .page {
-    padding: 32px var(--px);
-  }
-
-  .formRow {
-    grid-template-columns: 1fr;
-  }
-
-  .card,
-  .dangerCard {
-    padding: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .title {
-    font-size: 26px;
-  }
-
-  .levelPills {
-    flex-wrap: wrap;
-  }
-
-  .dangerRow {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .dangerOutlineBtn {
-    width: 100%;
-    text-align: center;
-  }
-}
