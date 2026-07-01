@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
 import type { User } from '../../types';
 import { Avatar } from '../Avatar/Avatar';
 import { useAuthContext } from '../../contexts/AuthContext';
@@ -22,8 +22,14 @@ const authNavItems = [
 export function Navbar({ user }: NavbarProps) {
   const { logout } = useAuthContext();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -44,7 +50,7 @@ export function Navbar({ user }: NavbarProps) {
           <img src={logoUrl} alt="AV Guitare Formation" className={styles.logoImg} />
         </NavLink>
 
-        <nav className={styles.nav}>
+        <nav className={[styles.nav, mobileOpen ? styles.navOpen : ''].filter(Boolean).join(' ')}>
           {navItems.map((item) => (
             <NavLink
               key={item.to}
@@ -56,9 +62,26 @@ export function Navbar({ user }: NavbarProps) {
               {item.label}
             </NavLink>
           ))}
+          {!user && (
+            <div className={styles.mobileGuestActions}>
+              <Link to="/login" className={styles.loginLink} onClick={() => setMobileOpen(false)}>Se connecter</Link>
+              <Link to="/register" className={styles.registerLink} onClick={() => setMobileOpen(false)}>S'inscrire</Link>
+            </div>
+          )}
         </nav>
 
         <div className={styles.right} ref={dropdownRef}>
+          <button
+            className={[styles.burgerBtn, mobileOpen ? styles.burgerOpen : ''].filter(Boolean).join(' ')}
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-label="Menu navigation"
+            aria-expanded={mobileOpen}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+
           {user ? (
             <>
               <button

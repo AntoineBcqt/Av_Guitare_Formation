@@ -521,3 +521,45 @@
 .contentTextarea::placeholder {
   color: var(--color-border);
 }
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+    min-height: 100vh;
+  }
+
+  .leftPanel {
+    width: 100%;
+    min-width: unset;
+    height: auto;
+    max-height: 420px;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .rightPanel {
+    height: auto;
+    overflow-y: visible;
+    flex: unset;
+  }
+
+  .editorBody {
+    padding: 24px 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .leftPanel {
+    max-height: 340px;
+  }
+
+  .editorBody {
+    padding: 20px 16px;
+  }
+
+  .lessonTitleInput {
+    font-size: 20px;
+  }
+}

@@ -303,3 +303,54 @@
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.7);
 }
+
+@media (max-width: 900px) {
+  .content {
+    grid-template-columns: 1fr;
+    padding: 24px var(--px);
+    gap: 24px;
+  }
+
+  .recommendCard {
+    position: static;
+  }
+
+  .greeting {
+    font-size: 28px;
+  }
+
+  .hero {
+    padding: 32px var(--px);
+  }
+}
+
+@media (max-width: 600px) {
+  .cardTopRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .resumeBtn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .otherCourseCard {
+    flex-wrap: wrap;
+  }
+
+  .otherCourseResume {
+    width: 100%;
+    text-align: center;
+  }
+
+  .mainCourseCard,
+  .otherCoursesCard {
+    padding: 20px;
+  }
+
+  .greeting {
+    font-size: 24px;
+  }
+}

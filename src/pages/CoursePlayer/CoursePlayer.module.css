@@ -178,3 +178,34 @@
 .resourceLink:hover {
   opacity: 0.75;
 }
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+    min-height: calc(100vh - 64px);
+    overflow: visible;
+  }
+
+  .mainContent {
+    overflow-y: visible;
+  }
+
+  .videoZone {
+    max-height: 56vw;
+  }
+
+  .lessonBody {
+    padding: 24px 20px;
+  }
+
+  .lessonTitle {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lessonBody {
+    padding: 20px 16px;
+  }
+}
